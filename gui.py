@@ -8,7 +8,7 @@ import cv2
 # import base64
 
 curr_location=os.path.dirname(os.path.abspath(__file__))
-model_location = "conv_lstm2 (1).keras"
+model_location =r"conv_lstm2 (1).keras"
 
 def videoLabels():
     return {0: 'loud',1: 'quiet',2: 'happy',3: 'long',4: 'short',5: 'large',6: 'little',7: 'hot',8: 'new',9: 'good',10: 'dry',
@@ -160,7 +160,7 @@ model_path_dict = {'Conv_Lstm': model_location,}
 model_names_list=['Conv_Lstm',]
 
 
-ans="hello"
+ans=""
 ## Streamlit App
 st.markdown("<h1 style='text-align: center; color: black;'>Sign Language Translator</h1>", unsafe_allow_html=True)
 # set_background(r"C:\Users\rmsre\Documents\Python Scripts\SLR\ISL.png")
