@@ -1,4 +1,7 @@
-gtts
-keras
-tensorflow==2.14.0
+os
+numpy
+opencv-python
 mediapipe
+keras
+gtts
+streamlit
