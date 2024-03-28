@@ -1,7 +1,5 @@
-os
-numpy
 opencv-python
 mediapipe
 keras
 gtts
-streamlit
+
