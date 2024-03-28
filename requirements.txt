@@ -1,4 +1,8 @@
-gtts
-keras
-mediapipe
-opencv-python
+!pip install streamlit
+!pip install gtts
+!pip install keras
+!pip install opencv-python
+!pip install mediapipe
+
+
+
