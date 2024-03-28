@@ -122,7 +122,7 @@ def preprocessVideo(path,nfsize=25,sz=150):
     return np.array(x)
 
 def loadOurModel(selected_model_loc):
-    """Loads model"""
+   # """Loads model"""
     return load_model(selected_model_loc)
 
 def predictSign(myModel,preprocessed_video):
@@ -160,7 +160,7 @@ model_path_dict = {'Conv_Lstm': model_location,}
 model_names_list=['Conv_Lstm',]
 
 
-ans=""
+ans="HI"
 ## Streamlit App
 st.markdown("<h1 style='text-align: center; color: black;'>Sign Language Translator</h1>", unsafe_allow_html=True)
 # set_background(r"C:\Users\rmsre\Documents\Python Scripts\SLR\ISL.png")
@@ -188,8 +188,8 @@ if uploaded_file is not None:
         f.write(uploaded_file.getbuffer())
     
     try:
-        ans = our_prediction(video_path,model_path_dict[selected_model])  
-        
+          
+        ans = our_prediction(video_path,model_path_dict[selected_model])
         # ans=our_prediction(video_path,selected_model_path)
         os.remove(video_path)
     except:
