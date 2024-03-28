@@ -202,6 +202,7 @@ if uploaded_file is not None:
     
     with col3:
         # st.write(f"<font color='black'><h3>Predicted Sign : {ans}</h3></font>",unsafe_allow_html=True)
+        
         st.header(f":black[Predicted Sign : {ans}]")
 
         st.subheader(":black[Audio]")
