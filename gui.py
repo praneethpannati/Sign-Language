@@ -160,7 +160,7 @@ model_path_dict = {'Conv_Lstm': model_location,}
 model_names_list=['Conv_Lstm',]
 
 
-ans="HI"
+
 ## Streamlit App
 st.markdown("<h1 style='text-align: center; color: black;'>Sign Language Translator</h1>", unsafe_allow_html=True)
 # set_background(r"C:\Users\rmsre\Documents\Python Scripts\SLR\ISL.png")
