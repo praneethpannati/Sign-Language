@@ -131,7 +131,7 @@ def predictSign(myModel,preprocessed_video):
     return [OurSignLabels[x] for x in pred]
 
 def our_prediction(input_path,selected_model_loc):
-    print(" IM INSIDE ")
+    print("....IM INSIDE....")
     if input_path[0]=="\"" and input_path[-1]=="\"":
         input_path=input_path[1:-1]
     
@@ -164,8 +164,8 @@ model_names_list=['Conv_Lstm',]
 ## Streamlit App
 st.markdown("<h1 style='text-align: center; color: black;'>Sign Language Translator</h1>", unsafe_allow_html=True)
 # set_background(r"C:\Users\rmsre\Documents\Python Scripts\SLR\ISL.png")
-ans=""
 
+answer=""
 # Create two columns
 col1, col2 ,col3 = st.columns(3)
 with col1:
@@ -189,7 +189,7 @@ if uploaded_file is not None:
     
     try:
         
-        ans = our_prediction(video_path,model_path_dict[selected_model])
+        answer = our_prediction(video_path,model_path_dict[selected_model])
         # ans=our_prediction(video_path,selected_model_path)
         os.remove(video_path)
     except:
@@ -204,12 +204,12 @@ if uploaded_file is not None:
     
     
     with col3:
-        # st.write(f"<font color='black'><h3>Predicted Sign : {ans}</h3></font>",unsafe_allow_html=True)
+        # st.write(f"<font color='black'><h3>Predicted Sign : {answer}</h3></font>",unsafe_allow_html=True)
         
-        st.header(f":black[Predicted Sign : {ans}]")
+        st.header(f":black[Predicted Sign : {answer}]")
 
         st.subheader(":black[Audio]")
-        audio = gTTS(text = ans, lang='en', slow=False)
+        audio = gTTS(text =answer, lang='en', slow=False)
         # Save audio to a temporary file
         # os.makedirs(curr_location, exist_ok=True)
         audio_path = os.path.join(curr_location, "test_temp_audio.mp3")
