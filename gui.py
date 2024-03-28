@@ -8,7 +8,7 @@ import cv2
 import base64
 
 curr_location=os.path.dirname(os.path.abspath(__file__))
-model_location=r"C:\Users\palna\FYP\conv_lstm2 (1).keras"
+model_location=r"conv_lstm2 (1).keras"
 # save_location=r"C:\Users\rmsre\Documents\Python Scripts\SLR\guiData"
 
 def videoLabels():
