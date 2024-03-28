@@ -1,4 +1,4 @@
 gtts
 keras
-tensorflow
+tensorflow==2.14.0
 mediapipe
