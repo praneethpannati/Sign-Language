@@ -1,0 +1,4 @@
+gtts
+keras
+mediapipe
+opencv-python
