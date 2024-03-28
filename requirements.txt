@@ -1,4 +1,4 @@
-!pip install gtts
-!pip install keras
-!pip install opencv-python
-!pip install mediapipe
+gtts
+keras
+opencv-python
+mediapipe
