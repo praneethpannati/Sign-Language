@@ -179,7 +179,8 @@ if uploaded_file is not None:
     #     os.remove(video_path)
     # except:
     #     os.remove(video_path)
-    prediction=our_prediction(video_path,model_path_dict[selected_model]
+    prediction=our_prediction(video_path,model_path_dict[selected_model])
+    os.remove(video_path)
     st.header(f":black[Predicted Sign : {prediction}]")
 
     with col2:
