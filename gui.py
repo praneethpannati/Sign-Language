@@ -149,7 +149,7 @@ def our_prediction(input_path,selected_model_loc):
     else:
         print(f"The path '{input_path}' is not valid.")
         return "Invalid"
-    print(pred[0])
+    print("RESULT IS  :"+pred[0])
     return pred[0]
 
 
