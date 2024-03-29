@@ -125,17 +125,18 @@ def our_prediction(selected_video_path,selected_model_path):
     if selected_video_path[0]=="\"" and selected_video_path[-1]=="\"":
         selected_video_path=selected_video_path[1:-1]
     
-    if is_valid_path(selected_video_path):
-        if os.path.isdir(selected_video_path):
-            print(f"The path '{selected_video_path}' is a valid directory.")
-        elif os.path.isfile(selected_video_path):
-            print(f"The path '{selected_video_path}' is a valid file.")
-        
+    # if is_valid_path(selected_video_path):
+    #     if os.path.isdir(selected_video_path):
+    #         print(f"The path '{selected_video_path}' is a valid directory.")
+    #     elif os.path.isfile(selected_video_path):
+    #         print(f"The path '{selected_video_path}' is a valid file.")
+    
         # play_video(selected_video_path)
         start_time = time.time()
         pred=predictSign(loadOurModel(selected_model_path),preprocessVideo(selected_video_path))
         end_time = time.time()
         print(pred)
+        print(f"OUR PREDICTION IS:{pred[0}")
     else:
         print(f"The path '{selected_video_path}' is not valid.")
         return ["Invalid",0]
