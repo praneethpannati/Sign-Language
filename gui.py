@@ -8,7 +8,7 @@ import cv2
 # import base64
 
 curr_location=os.path.dirname(os.path.abspath(__file__))
-model_location="/Sign-Language/conv_lstm2 (1).keras"
+model_location=r"/Sign-Language/conv_lstm2 (1).keras"
 
 def videoLabels():
     return {0: 'loud',1: 'quiet',2: 'happy',3: 'long',4: 'short',5: 'large',6: 'little',7: 'hot',8: 'new',9: 'good',10: 'dry',
@@ -187,12 +187,12 @@ if uploaded_file is not None:
     with open(video_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
     
-    try:
+    #try:
         
         answer = our_prediction(video_path,model_path_dict[selected_model])
         # ans=our_prediction(video_path,selected_model_path)
         os.remove(video_path)
-    except:
+    #except:
         os.remove(video_path)
     
 
