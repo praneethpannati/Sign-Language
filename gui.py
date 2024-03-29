@@ -152,7 +152,6 @@ model_names_list=['Conv_Lstm',]
 
 ## Streamlit App
 st.markdown("<h1 style='text-align: center; color: black;'>Sign Language Translator</h1>", unsafe_allow_html=True)
-# set_background(r"C:\Users\rmsre\Documents\Python Scripts\SLR\ISL.png")
 
 
 # Create two columns
@@ -187,7 +186,7 @@ if uploaded_file is not None:
             st.write("<font color='black'><h3>Video Player</h3></font>",unsafe_allow_html=True)
             # Display the video player
             st.video(uploaded_file)
-            st.write(f"<font color='black'>Overall Time taken to predict : {total_time-3:.4f}</font>",unsafe_allow_html=True)
+            # st.write(f"<font color='black'>Overall Time taken to predict : {total_time-3:.4f}</font>",unsafe_allow_html=True)
     
     
     with col3:
