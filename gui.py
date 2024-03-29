@@ -8,7 +8,7 @@ import cv2
 import time
 
 curr_location=os.path.dirname(os.path.abspath(__file__))
-model_location="conv_lstm2 (1).keras"
+model_location="Conv_Lstm.h5"
 
 def videoLabels():
     return {0: 'loud',1: 'quiet',2: 'happy',3: 'long',4: 'short',5: 'large',6: 'little',7: 'hot',8: 'new',9: 'good',10: 'dry',
