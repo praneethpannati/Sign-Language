@@ -5,7 +5,7 @@ from keras.models import load_model
 from mediapipe import solutions
 import os
 import cv2
-# import base64
+import time
 
 curr_location=os.path.dirname(os.path.abspath(__file__))
 model_location="conv_lstm2 (1).keras"
@@ -19,15 +19,6 @@ def videoLabels():
 def is_valid_path(path):
     """Check if the given path location is a valid directory or file."""
     return os.path.exists(path) and (os.path.isdir(path) or os.path.isfile(path))
-
-# def get_base64(bin_file):
-#     with open(bin_file, 'rb') as f:
-#         data = f.read()
-#     return base64.b64encode(data).decode()
-
-# def set_background(png_file):
-#     bin_str = get_base64(png_file)
-#     st.markdown('''<style>.stApp {background-image: url("data:image/png;base64,%s");background-size: cover;}</style>''' % bin_str, unsafe_allow_html=True)
 
 def play_video(video_path):
     """Play a video file."""
@@ -121,38 +112,34 @@ def preprocessVideo(path,nfsize=25,sz=150):
     cv2.destroyAllWindows()
     return np.array(x)
 
-def loadOurModel(selected_model_loc):
+def loadOurModel(selected_model_path):
     """Loads model"""
-    return load_model(selected_model_loc)
+    return load_model(selected_model_path)
 
 def predictSign(myModel,preprocessed_video):
     pred=np.argmax(myModel.predict(preprocessed_video),axis=1)
     OurSignLabels=videoLabels()
     return [OurSignLabels[x] for x in pred]
 
-def our_prediction(input_path,selected_model_loc):
-    print("....IM INSIDE....")
-    if input_path[0]=="\"" and input_path[-1]=="\"":
-        input_path=input_path[1:-1]
+def our_prediction(selected_video_path,selected_model_path):
+    if selected_video_path[0]=="\"" and selected_video_path[-1]=="\"":
+        selected_video_path=selected_video_path[1:-1]
     
-    if is_valid_path(input_path):
-        if os.path.isdir(input_path):
-            print(f"The path '{input_path}' is a valid directory.")
-        elif os.path.isfile(input_path):
-            print(f"The path '{input_path}' is a valid file.")
+    if is_valid_path(selected_video_path):
+        if os.path.isdir(selected_video_path):
+            print(f"The path '{selected_video_path}' is a valid directory.")
+        elif os.path.isfile(selected_video_path):
+            print(f"The path '{selected_video_path}' is a valid file.")
         
-        x_val = preprocessVideo(input_path)
-        # play_video(input_path)
-        myModel=loadOurModel(selected_model_loc)
-    
-
-        pred = predictSign(myModel,x_val)
+        # play_video(selected_video_path)
+        start_time = time.time()
+        pred=predictSign(loadOurModel(selected_model_path),preprocessVideo(selected_video_path))
+        end_time = time.time()
         print(pred)
     else:
-        print(f"The path '{input_path}' is not valid.")
-        return "Invalid"
-    print("RESULT IS  :"+pred[0])
-    return pred[0]
+        print(f"The path '{selected_video_path}' is not valid.")
+        return ["Invalid",0]
+    return [pred[0],end_time-start_time]
 
 
 
@@ -167,7 +154,7 @@ model_names_list=['Conv_Lstm',]
 st.markdown("<h1 style='text-align: center; color: black;'>Sign Language Translator</h1>", unsafe_allow_html=True)
 # set_background(r"C:\Users\rmsre\Documents\Python Scripts\SLR\ISL.png")
 
-answer=""
+
 # Create two columns
 col1, col2 ,col3 = st.columns(3)
 with col1:
@@ -190,41 +177,43 @@ if uploaded_file is not None:
         f.write(uploaded_file.getbuffer())
     
     try:
-        answer = our_prediction(video_path,model_path_dict[selected_model])
+        [ans,time_taken]=our_prediction(video_path,model_path_dict[selected_model])
         # ans=our_prediction(video_path,selected_model_path)
         os.remove(video_path)
     except:
         os.remove(video_path)
-
     
+
     with col2:
         with st.container(height=450,border=False):
             st.write("<font color='black'><h3>Video Player</h3></font>",unsafe_allow_html=True)
             # Display the video player
             st.video(uploaded_file)
+            st.write(f"<font color='black'>Overall Time taken to predict : {time_taken-3:.4f}</font>",unsafe_allow_html=True)
     
     
     with col3:
-        # st.write(f"<font color='black'><h3>Predicted Sign : {answer}</h3></font>",unsafe_allow_html=True)
-        
-        st.header(f":black[Predicted Sign : {answer}]")
+        # st.write(f"<font color='black'><h3>Predicted Sign : {ans}</h3></font>",unsafe_allow_html=True)
+        st.header(f":black[Predicted Sign : {ans}]")
 
         st.subheader(":black[Audio]")
-        audio = gTTS(text =answer, lang='en', slow=False)
+        audio = gTTS(text=ans, lang='en', slow=False)
         # Save audio to a temporary file
         # os.makedirs(curr_location, exist_ok=True)
-        audio_path = os.path.join(curr_location, "test_temp_audio.mp3")
-        audio.save(audio_path)
+        audio_file_path = os.path.join(curr_location, "test_temp_audio.mp3")
+        audio.save(audio_file_path)
         
         # Display audio player
         try:
-            st.audio(audio_path)
-            os.remove(audio_path)
+            st.audio(audio_file_path)
+            # st.write(f'<audio src="{audio_file_path}" id="audio" autoplay="autoplay" controls="controls">', unsafe_allow_html=True)
+            # st.script("""var audio = document.getElementById("audio");audio.play();""")
+            os.remove(audio_file_path)
         except:
-            os.remove(audio_path)
-    
+            os.remove(audio_file_path)
         # space between colums
         # st.write('<style>div.row-widget.stHorizontal { flex-wrap: nowrap; }</style>', unsafe_allow_html=True)
         
 
 # Run the app
+
