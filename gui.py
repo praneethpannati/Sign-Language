@@ -179,7 +179,7 @@ if uploaded_file is not None:
         os.remove(video_path)
     except:
         os.remove(video_path)
-    
+    st.header(f":black[Predicted Sign : {ans}]")
 
     with col2:
         with st.container(height=450,border=False):
@@ -191,7 +191,7 @@ if uploaded_file is not None:
     
     with col3:
         # st.write(f"<font color='black'><h3>Predicted Sign : {ans}</h3></font>",unsafe_allow_html=True)
-        st.header(f":black[Predicted Sign : {ans}]")
+        # st.header(f":black[Predicted Sign : {ans}]")
         st.subheader(":black[Audio]")
         audio = gTTS(text=ans, lang='en', slow=False)
         # Save audio to a temporary file
