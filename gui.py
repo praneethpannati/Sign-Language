@@ -139,7 +139,7 @@ def our_prediction(selected_video_path,selected_model_path):
     else:
         print(f"The path '{selected_video_path}' is not valid.")
         return ["Invalid",0]
-    return pred[0]
+    return [pred[0],end_time-start_time]
 
 
 
@@ -174,13 +174,13 @@ if uploaded_file is not None:
     with open(video_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
     # try:
-    #     [ans,total_time]=our_prediction(video_path,model_path_dict[selected_model])
-    #     # ans=our_prediction(video_path,selected_model_path)
-    #     os.remove(video_path)
-    # except:
-    #     os.remove(video_path)
-    prediction=our_prediction(video_path,model_path_dict[selected_model])
-    os.remove(video_path)
+        [prediction,total_time]=our_prediction(video_path,model_path_dict[selected_model])
+        # ans=our_prediction(video_path,selected_model_path)
+        os.remove(video_path)
+    except:
+        os.remove(video_path)
+    # prediction=our_prediction(video_path,model_path_dict[selected_model])
+    # os.remove(video_path)
     st.header(f":black[Predicted Sign : {prediction}]")
 
     with col2:
