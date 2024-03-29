@@ -136,7 +136,7 @@ def our_prediction(selected_video_path,selected_model_path):
         pred=predictSign(loadOurModel(selected_model_path),preprocessVideo(selected_video_path))
         end_time = time.time()
         print(pred)
-        print(f"OUR PREDICTION IS:{pred[0}")
+        print(f"OUR PREDICTION IS:{pred[0]}")
     else:
         print(f"The path '{selected_video_path}' is not valid.")
         return ["Invalid",0]
