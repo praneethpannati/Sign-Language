@@ -1,6 +1,7 @@
 import streamlit as st
 from gtts import gTTS
 import numpy as np
+import tensorflow as tf
 from keras.models import load_model
 from mediapipe import solutions
 import os
