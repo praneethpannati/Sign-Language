@@ -139,7 +139,7 @@ def our_prediction(selected_video_path,selected_model_path):
     else:
         print(f"The path '{selected_video_path}' is not valid.")
         return ["Invalid",0]
-    return [pred[0],end_time-start_time]
+    return pred[0]
 
 
 
@@ -173,13 +173,14 @@ if uploaded_file is not None:
     # Save the uploaded file to the specified location
     with open(video_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
-    try:
-        [ans,total_time]=our_prediction(video_path,model_path_dict[selected_model])
-        # ans=our_prediction(video_path,selected_model_path)
-        os.remove(video_path)
-    except:
-        os.remove(video_path)
-    st.header(f":black[Predicted Sign : {ans}]")
+    # try:
+    #     [ans,total_time]=our_prediction(video_path,model_path_dict[selected_model])
+    #     # ans=our_prediction(video_path,selected_model_path)
+    #     os.remove(video_path)
+    # except:
+    #     os.remove(video_path)
+    prediction=our_prediction(video_path,model_path_dict[selected_model]
+    st.header(f":black[Predicted Sign : {prediction}]")
 
     with col2:
         with st.container(height=450,border=False):
@@ -191,9 +192,9 @@ if uploaded_file is not None:
     
     with col3:
         # st.write(f"<font color='black'><h3>Predicted Sign : {ans}</h3></font>",unsafe_allow_html=True)
-        # st.header(f":black[Predicted Sign : {ans}]")
+        st.header(f":black[Predicted Sign : {prediction}]")
         st.subheader(":black[Audio]")
-        audio = gTTS(text=ans, lang='en', slow=False)
+        audio = gTTS(text=prediction, lang='en', slow=False)
         # Save audio to a temporary file
         # os.makedirs(curr_location, exist_ok=True)
         audio_file_path = os.path.join(curr_location, "test_temp_audio.mp3")
