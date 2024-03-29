@@ -171,13 +171,11 @@ if uploaded_file is not None:
     # st.write("Selected Video:", uploaded_file.name)
     # os.makedirs(curr_location, exist_ok=True)
     video_path = os.path.join(curr_location, uploaded_file.name)
-
     # Save the uploaded file to the specified location
     with open(video_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
-    
     try:
-        [ans,time_taken]=our_prediction(video_path,model_path_dict[selected_model])
+        [ans,total_time]=our_prediction(video_path,model_path_dict[selected_model])
         # ans=our_prediction(video_path,selected_model_path)
         os.remove(video_path)
     except:
@@ -189,13 +187,12 @@ if uploaded_file is not None:
             st.write("<font color='black'><h3>Video Player</h3></font>",unsafe_allow_html=True)
             # Display the video player
             st.video(uploaded_file)
-            st.write(f"<font color='black'>Overall Time taken to predict : {time_taken-3:.4f}</font>",unsafe_allow_html=True)
+            st.write(f"<font color='black'>Overall Time taken to predict : {total_time-3:.4f}</font>",unsafe_allow_html=True)
     
     
     with col3:
         # st.write(f"<font color='black'><h3>Predicted Sign : {ans}</h3></font>",unsafe_allow_html=True)
         st.header(f":black[Predicted Sign : {ans}]")
-
         st.subheader(":black[Audio]")
         audio = gTTS(text=ans, lang='en', slow=False)
         # Save audio to a temporary file
