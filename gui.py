@@ -173,7 +173,7 @@ if uploaded_file is not None:
     # Save the uploaded file to the specified location
     with open(video_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
-    # try:
+    try:
         [prediction,total_time]=our_prediction(video_path,model_path_dict[selected_model])
         # ans=our_prediction(video_path,selected_model_path)
         os.remove(video_path)
