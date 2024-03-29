@@ -189,15 +189,14 @@ if uploaded_file is not None:
     with open(video_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
     
-    #try:
-        
+    try:
         answer = our_prediction(video_path,model_path_dict[selected_model])
         # ans=our_prediction(video_path,selected_model_path)
         os.remove(video_path)
-    #except:
+    except:
         os.remove(video_path)
-    
 
+    
     with col2:
         with st.container(height=450,border=False):
             st.write("<font color='black'><h3>Video Player</h3></font>",unsafe_allow_html=True)
