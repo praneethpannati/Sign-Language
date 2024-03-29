@@ -143,7 +143,9 @@ def our_prediction(input_path,selected_model_loc):
         
         x_val = preprocessVideo(input_path)
         # play_video(input_path)
-        myModel=loadOurModel(selected_model_loc)
+    #myModel=loadOurModel(selected_model_loc)
+        myModel=tf.keras.models.load_model('conv_lstm2 (1).keras')
+
         pred = predictSign(myModel,x_val)
         print(pred)
     else:
