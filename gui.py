@@ -125,7 +125,7 @@ def our_prediction(selected_video_path,selected_model_path):
     if selected_video_path[0]=="\"" and selected_video_path[-1]=="\"":
         selected_video_path=selected_video_path[1:-1]
     
-    # if is_valid_path(selected_video_path):
+    if is_valid_path(selected_video_path):
     #     if os.path.isdir(selected_video_path):
     #         print(f"The path '{selected_video_path}' is a valid directory.")
     #     elif os.path.isfile(selected_video_path):
