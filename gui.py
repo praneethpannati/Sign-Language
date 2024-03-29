@@ -1,7 +1,6 @@
 import streamlit as st
 from gtts import gTTS
 import numpy as np
-import tensorflow as tf
 from keras.models import load_model
 from mediapipe import solutions
 import os
@@ -9,7 +8,7 @@ import cv2
 # import base64
 
 curr_location=os.path.dirname(os.path.abspath(__file__))
-model_location=r"/Sign-Language/conv_lstm2 (1).keras"
+model_location="conv_lstm2 (1).keras"
 
 def videoLabels():
     return {0: 'loud',1: 'quiet',2: 'happy',3: 'long',4: 'short',5: 'large',6: 'little',7: 'hot',8: 'new',9: 'good',10: 'dry',
@@ -144,8 +143,8 @@ def our_prediction(input_path,selected_model_loc):
         
         x_val = preprocessVideo(input_path)
         # play_video(input_path)
-    #myModel=loadOurModel(selected_model_loc)
-        myModel=tf.keras.models.load_model('conv_lstm2 (1).keras')
+        myModel=loadOurModel(selected_model_loc)
+    
 
         pred = predictSign(myModel,x_val)
         print(pred)
