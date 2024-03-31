@@ -182,14 +182,14 @@ if uploaded_file is not None:
         os.remove(video_path)
     # prediction=our_prediction(video_path,model_path_dict[selected_model])
     # os.remove(video_path)
-    st.header(f":black[Predicted Sign : {prediction}]")
+    # st.header(f":black[Predicted Sign : {prediction}]")
 
     with col2:
         with st.container(height=450,border=False):
             st.write("<font color='black'><h3>Video Player</h3></font>",unsafe_allow_html=True)
             # Display the video player
             st.video(uploaded_file)
-            # st.write(f"<font color='black'>Overall Time taken to predict : {total_time-3:.4f}</font>",unsafe_allow_html=True)
+            st.write(f"<font color='black'>Overall Time taken to predict : {total_time-3:.4f}</font>",unsafe_allow_html=True)
     
     
     with col3:
